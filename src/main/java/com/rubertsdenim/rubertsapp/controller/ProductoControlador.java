@@ -5,6 +5,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import com.rubertsdenim.rubertsapp.model.Producto;
@@ -20,18 +22,6 @@ public class ProductoControlador {
     @Autowired
     private ProductoServicio productoServicio;
 
-    /*
-    @PostMapping("/productos")
-    public ResponseEntity<?> saveProducto(@RequestBody Producto producto){
-        try{
-            Producto productoGuardado = productoServicio.guardarProducto(producto);
-            return new ResponseEntity<Productos>(productoGuardado, HttpStatus.CREATED);
-        } catch(Exception e){
-            return new ResponseEntity<String>(e.getCause().toString(), HttpStatus.INTERNAL_SERVER_ERROR);
-        }
-    }
-    */
-
     @GetMapping("/productos")
     public List<Producto> obteneProductos(){
         List<Producto> productos = this.productoServicio.listarProductos();
@@ -40,5 +30,10 @@ public class ProductoControlador {
         return productos;
     }
     
+    @PostMapping("/productos")
+    public Producto agregarProducto(@RequestBody Producto producto){
+        logger.info("Producto a Agregar" + producto);
+        return this.productoServicio.guardarProducto(producto);
+    }
 
 }
