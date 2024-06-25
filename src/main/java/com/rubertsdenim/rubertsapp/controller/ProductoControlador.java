@@ -1,14 +1,22 @@
 package com.rubertsdenim.rubertsapp.controller;
 
 import java.util.List;
+
+import org.apache.catalina.connector.Response;
+import org.bson.types.ObjectId;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import com.rubertsdenim.rubertsapp.exception.RecursoNoEncontrado;
 import com.rubertsdenim.rubertsapp.model.Producto;
 import com.rubertsdenim.rubertsapp.service.ProductoServicio;
 
@@ -35,5 +43,25 @@ public class ProductoControlador {
         logger.info("Producto a Agregar" + producto);
         return this.productoServicio.guardarProducto(producto);
     }
+    
+    @GetMapping("/productos/{id}")
+    public ResponseEntity<Producto> obtenerProductoPorId(@PathVariable ObjectId id){
+        Producto producto = this.productoServicio.buscarProductoPorId(id);
+        
+        if(producto != null)
+            return ResponseEntity.ok(producto);
+        else
+            throw new RecursoNoEncontrado("No se encontro el Producto con ID: " + id);
+    }
 
+    @PutMapping("/productos/{id}")
+    public ResponseEntity<Producto> actualizarProducto(@PathVariable ObjectId id, @RequestBody Producto productoRecibido){
+        Producto producto = this.productoServicio.buscarProductoPorId(id);
+        producto.setNombre(productoRecibido.getNombre());
+        producto.setColor(productoRecibido.getColor());
+        producto.setCantidad(productoRecibido.getCantidad());
+        producto.setCategoria(productoRecibido.getCategoria());
+        this.productoServicio.guardarProducto(producto);
+        return ResponseEntity.ok(producto);
+    }
 }
