@@ -51,29 +51,17 @@
                 <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Categoria</th>
                 <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Cantidad</th>
                 <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Color</th>
+                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"></th>
               </tr>
             </thead>
             <tbody class="divide-y divide-gray-300">
-              <tr>
-                <td class="px-6 py-4 whitespace-nowrap">1</td>
-                <td class="px-6 py-4 whitespace-nowrap">Producto A</td>
-                <td class="px-6 py-4 whitespace-nowrap">Elástico</td>
-                <td class="px-6 py-4 whitespace-nowrap">10</td>
-                <td class="px-6 py-4 whitespace-nowrap">Blanco</td>
-              </tr>
-              <tr>
-                <td class="px-6 py-4 whitespace-nowrap">2</td>
-                <td class="px-6 py-4 whitespace-nowrap">Producto B</td>
-                <td class="px-6 py-4 whitespace-nowrap">Hilo</td>
-                <td class="px-6 py-4 whitespace-nowrap">5</td>
-                <td class="px-6 py-4 whitespace-nowrap">Negro</td>
-              </tr>
-              <tr>
-                <td class="px-6 py-4 whitespace-nowrap">3</td>
-                <td class="px-6 py-4 whitespace-nowrap">Producto C</td>
-                <td class="px-6 py-4 whitespace-nowrap">Hilo</td>
-                <td class="px-6 py-4 whitespace-nowrap">8</td>
-                <td class="px-6 py-4 whitespace-nowrap">Azul</td>
+              <tr th:each="producto : ${productos}">
+                <td th:text="${producto.idProducto}"></td>
+                <td th:text="${producto.nombre}"></td>
+                <td th:text="${producto.categoria}"></td>
+                <td th:text="${producto.cantidad}"></td>
+                <td th:text="${producto.color}"></td>
+                <td th:text="Buttons"></td>
               </tr>
             </tbody>
           </table>
