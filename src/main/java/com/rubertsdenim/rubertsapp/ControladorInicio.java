@@ -64,4 +64,14 @@ public class ControladorInicio {
         return "redirect:/inventario";
     }
 
+
+    @GetMapping("/inventario/delete/{id}")
+    public String eliminarProducto(@PathVariable ObjectId id) {
+        Producto producto = productoServicio.buscarProductoPorId(id);
+        if (producto != null) {
+            productoServicio.eliminarProductoPorId(id);
+        }
+        return "redirect:/inventario";
+    }
+
 }
