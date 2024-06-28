@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Añadir Productos</title>
+</head>
+<body>
+    <h1>Registrar Nuevo Producto</h1>
+    <form th:action="@{/inventario/create}" th:object="${producto}" method="post">
+        <p>Nombre: <input type="text" th:field="*{nombre}" required /></p>
+        <p>Categoría: 
+            <select th:field="*{categoria}" required>
+                <option value="">Selecciona una Categoría</option>
+                <option value="Elasticos">Elasticos</option>
+                <option value="Botones">Botones</option>
+            </select>
+        </p>
+        <p>Cantidad: <input type="number" th:field="*{cantidad}" required /></p>
+        <p>Color: <input type="text" th:field="*{color}" required /></p>
+        <p><input type="submit" value="Registrar Producto" /></p>
+        <p><input type="reset" value="Cancelar" /></p>
+    </form>
+</body>
+</html>

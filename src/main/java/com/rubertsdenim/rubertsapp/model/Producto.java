@@ -20,6 +20,9 @@ public class Producto {
     private int cantidad;
     private String color;
 
+    public Producto() {
+    }
+
     public Producto(ObjectId idProducto, String nombre, String categoria, int cantidad, String color) {
         this.idProducto = idProducto;
         this.nombre = nombre;
@@ -28,5 +31,4 @@ public class Producto {
         this.color = color;
     }
 
-    
 }
