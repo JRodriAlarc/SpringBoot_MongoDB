@@ -19,16 +19,18 @@ public class Producto {
     private String categoria;
     private int cantidad;
     private String color;
+    private String imagen;
 
     public Producto() {
     }
 
-    public Producto(ObjectId idProducto, String nombre, String categoria, int cantidad, String color) {
+    public Producto(ObjectId idProducto, String nombre, String categoria, int cantidad, String color, String imagen) {
         this.idProducto = idProducto;
         this.nombre = nombre;
         this.categoria = categoria;
         this.cantidad = cantidad;
         this.color = color;
+        this.imagen = imagen;
     }
 
 }
